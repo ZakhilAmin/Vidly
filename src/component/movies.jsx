@@ -4,6 +4,7 @@ import { getGenres } from '../service/fakeGenreService';
 import Pagination from './pagination';
 import { paginate } from './../utils/paginate';
 import ListGroup from './listGroup';
+import MoviesTable from './moviesTable';
 
 class Movies extends Component {
     state = { 
@@ -47,34 +48,7 @@ class Movies extends Component {
                 </div>
                 <div className="col">
                 <p>There are {filtered.length} movies in the database</p>
-                <table className="table">  
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Genre</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Daily Rating</th>
-                            <th scope="col">Rating</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {movies.map(movie => 
-                        <tr key={movie._id}>
-                            <td>{movie.title}</td>
-                            <td>{movie.genre.name}</td>
-                            <td>{movie.numberInStock}</td>
-                            <td>@{movie.dailyRentalRate}</td>
-                            <td><i class="fa fa-heart-o" aria-hidden="true" onClick={this.changeIcon}></i></td>
-                            <td>
-                                <button 
-                                onClick = {() =>this.handleDelete(movie)} 
-                                className="btn btn-danger btn-sm">Delete</button>
-                            </td>  
-                         </tr>  
-                        )}
-                    </tbody>
-                </table>
+               <MoviesTable movies={movies} onDelete={this.handleDelete} onLike={this.changeIcon}/>
                 <Pagination 
                     itemsCount={filtered.length} 
                     pageSize={pageSize}  
