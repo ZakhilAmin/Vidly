@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 
 const MoviesTable = (props) => {
-    const {movies, onDelete} = props;
+    const {movies, onDelete, onSort} = props;
 
     return (  
     <table className="table">  
     <thead className="thead-dark">
         <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Daily Rating</th>
-            <th scope="col">Rating</th>
+            <th onClick={()=>onSort('title')}>Title</th>
+            <th onClick={()=>onSort('genre.name')} scope="col">Genre</th>
+            <th onClick={()=>onSort('numberInStock')} scope="col">Stock</th>
+            <th onClick={()=>onSort('dailyRentalRate')} scope="col">Daily Rating</th>
+            <th scope="col">Like/Dislike</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
